@@ -6,15 +6,16 @@ class ToDo extends Component {
 
         this.state = {
             todos: [
-                {content: "todo 1", id: "1"},
-                {content: "todo 2", id: "2"},
-                {content: "todo 3", id: "3"},
-                {content: "todo 4", id: "4"},
+                {content: "todo 1", id: 1},
+                {content: "todo 2", id: 2},
+                {content: "todo 3", id: 3},
+                {content: "todo 4", id: 4},
             ],
             t: ""
         };
         this.todoChange = this.todoChange.bind(this);
         this.addToList = this.addToList.bind(this);
+        this.removeItem = this.removeItem.bind(this);
     }
 
     // componentWillMount
@@ -26,7 +27,6 @@ class ToDo extends Component {
     // componentWillUnmount
 
     todoChange(e) {
-        // console.log(e.target.value);
         this.setState({t: e.target.value})
     }
 
@@ -37,14 +37,24 @@ class ToDo extends Component {
     }
 
     getRandomInt() {
-    return Math.floor(Math.random() * Math.floor(1000000000));
+        return Math.floor(Math.random() * Math.floor(1000000000));
+    }
+
+    removeItem(e) {
+        let nl = this.state.todos.filter((v, i) => {
+            return parseInt(e.target.name) !== v.id;
+        });
+
+        console.log(nl);
+
+        this.setState({todos: nl});
     }
 
     render(){
         return(
             <div>
                 <ToDoForm value={this.state.t} change={this.todoChange} add={this.addToList}/>
-                <ToDoList todos={this.state.todos}/>
+                <ToDoList todos={this.state.todos} remove={this.removeItem}/>
             </div>
         );
     }
@@ -71,7 +81,7 @@ class ToDoList extends Component {
     render() {
         return (
             <ul>
-                {this.props.todos.map((v) => <ToDoItem todo={v.content} key={v.id}/>)}
+                {this.props.todos.map((v) => <ToDoItem todo={v.content} key={v.id} item={v.id} remove={this.props.remove} />)}
             </ul>
         );
     }
@@ -80,7 +90,10 @@ class ToDoList extends Component {
 class ToDoItem extends Component {
     render() {
         return (
-            <li>{this.props.todo}</li>
+            <li>
+                {this.props.todo} 
+                <button name={this.props.item} onClick={this.props.remove} >&times;</button>
+            </li>
         )
     }
 }

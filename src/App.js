@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CForm from './CForm'
 import CValue from './CValue'
 import ToDo from "./ToDo";
 import './App.css';
+import { Switch, Route } from 'react-router';
 
-class App extends Component {
+class App extends React.Component {
   constructor() {
     super();
 
@@ -38,8 +39,36 @@ class App extends Component {
         <CValue result={this.state.result} clickHandler={this.calculateResult} />
         <hr/>
         <ToDo />
+        <Switch>
+          <Route path="/football" component={Brazil}/>
+        </Switch>
       </div>
     );
+  }
+}
+
+class Brazil extends React.Component {
+  render () {
+    return (
+      <div>
+        <h1>Хрватска шампион!!!</h1>
+        <Switch>
+          <Route path="/football/:team" component={Team} />
+        </Switch>
+      </div>
+    )
+  }
+}
+
+// const Team = (props) => {
+//   return (
+//     <h3>{this.props.match.params.team}</h3>
+//   )
+// }
+
+class Team extends React.Component {
+  render() {
+    return <h3>{this.props.match.params.team}</h3>;
   }
 }
 
