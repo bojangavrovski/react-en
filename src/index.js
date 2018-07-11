@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import { BrowserRouter } from 'react-router-dom';
-import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -11,4 +10,5 @@ ReactDOM.render(
     </BrowserRouter>
     , document.getElementById('root')
 );
-registerServiceWorker();
+
+// https://jsonplaceholder.typicode.com/

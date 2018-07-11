@@ -61,9 +61,7 @@ class Brazil extends React.Component {
 }
 
 // const Team = (props) => {
-//   return (
-//     <h3>{this.props.match.params.team}</h3>
-//   )
+//   return <h3>{this.props.match.params.team}</h3>
 // }
 
 class Team extends React.Component {
