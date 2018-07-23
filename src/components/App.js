@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import Main from './Main';
+import React, { Component } from 'react';
+import PostForm from './PostForm';
+import Posts from './Posts';
+
 
 class App extends Component {
     render() {
-        return(
+        return (
             <div>
-                <Header />
-                <Main />
-                <Footer />
+                <PostForm />
+                <Posts />
             </div>
         )
     }

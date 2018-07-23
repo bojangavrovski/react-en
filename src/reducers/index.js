@@ -1,9 +1,10 @@
-const initialState = {
-    posts: []
-}
+import { combineReducers } from 'redux';
+import { postsHasError, postsIsLoading, posts} from './posts';
 
-const rootReducer = (state = initialState, action) => {
-    return state;
-}
+const rootReducer = combineReducers({
+  postsHasError,
+  postsIsLoading,
+  posts
+});
 
 export default rootReducer;
